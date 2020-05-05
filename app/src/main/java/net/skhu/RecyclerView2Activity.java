@@ -1,11 +1,13 @@
 package net.skhu;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -62,8 +64,25 @@ public class RecyclerView2Activity extends AppCompatActivity {
             ListIterator<Memo> iterator = arrayList.listIterator();
             while (iterator.hasNext()) if (iterator.next().isChecked()) iterator.remove();
             recyclerView2Adapter.notifyDataSetChanged();
+            deleteItems();
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    private void deleteItems() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.confirm);
+        builder.setMessage(R.string.doYouWantToDelete);
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int index) {
+                ListIterator<Memo> iterator = arrayList.listIterator();
+                while (iterator.hasNext()) if (iterator.next().isChecked()) iterator.remove();
+                recyclerView2Adapter.notifyDataSetChanged();
+            }
+        });
+        builder.setNegativeButton(R.string.no, null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

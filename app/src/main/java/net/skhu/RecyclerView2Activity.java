@@ -7,12 +7,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.ListIterator;
 
 public class RecyclerView2Activity extends AppCompatActivity {
     RecyclerView2Adapter recyclerView2Adapter;
@@ -44,5 +47,20 @@ public class RecyclerView2Activity extends AppCompatActivity {
                 recyclerView2Adapter.notifyDataSetChanged();
             }
         });
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_recycler_view2, menu); return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_remove) {
+            ListIterator<Memo> iterator = arrayList.listIterator();
+            while (iterator.hasNext()) if (iterator.next().isChecked()) iterator.remove();
+            recyclerView2Adapter.notifyDataSetChanged();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

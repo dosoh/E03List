@@ -7,6 +7,7 @@ public class Memo {
     final static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     String title;
     Date date;
+    boolean checked;
 
     public Memo(String title, Date date) {
         this.title = title; this.date = date;
@@ -25,5 +26,11 @@ public class Memo {
     }
     public String getDateFormatted() {
         return format.format(date);
+    }
+    public boolean isChecked(){
+        return checked;
+    }
+    public void setChecked(boolean checked){
+        this.checked = checked;
     }
 }

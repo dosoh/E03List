@@ -3,12 +3,12 @@ package net.skhu;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class memo {
+public class Memo {
     final static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     String title;
     Date date;
 
-    public memo(String title, Date date) {
+    public Memo(String title, Date date) {
         this.title = title; this.date = date;
     }
     public String getTitle() {

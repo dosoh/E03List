@@ -16,15 +16,15 @@ import java.util.Date;
 
 public class RecyclerView2Activity extends AppCompatActivity {
     RecyclerView2Adapter recyclerView2Adapter;
-    ArrayList<memo> arrayList;
+    ArrayList<Memo> arrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view2);
 
-        arrayList = new ArrayList<memo>();
-        arrayList.add(new memo("one", new Date()));
-        arrayList.add(new memo("two", new Date()));
+        arrayList = new ArrayList<Memo>();
+        arrayList.add(new Memo("one", new Date()));
+        arrayList.add(new Memo("two", new Date()));
 
         recyclerView2Adapter = new RecyclerView2Adapter(this, arrayList);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
@@ -40,7 +40,7 @@ public class RecyclerView2Activity extends AppCompatActivity {
                 EditText e = (EditText) findViewById(R.id.editText);
                 String s = e.getText().toString();
                 e.setText("");
-                arrayList.add(new memo(s, new Date()));
+                arrayList.add(new Memo(s, new Date()));
                 recyclerView2Adapter.notifyDataSetChanged();
             }
         });

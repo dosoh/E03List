@@ -1,5 +1,6 @@
 package net.skhu;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,9 +43,17 @@ public class RecyclerView2Adapter extends RecyclerView.Adapter<RecyclerView2Adap
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             Memo memo = arrayList.get(super.getAdapterPosition());
             memo.setChecked(isChecked);
+            if (isChecked) ++checkedCount;
+            else --checkedCount;
+            if (isChecked && checkedCount == 1 || !isChecked && checkedCount == 0) {
+                Activity activity = (Activity) textView1.getContext();
+                activity.invalidateOptionsMenu();
+            }
         }
     }
-    LayoutInflater layoutInflater; ArrayList<Memo> arrayList;
+    LayoutInflater layoutInflater;
+    ArrayList<Memo> arrayList;
+    int checkedCount =0;
     public RecyclerView2Adapter(Context context, ArrayList<Memo> arrayList) {
         this.layoutInflater = LayoutInflater.from(context);
         this.arrayList = arrayList;

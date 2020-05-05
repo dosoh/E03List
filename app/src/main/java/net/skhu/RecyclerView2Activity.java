@@ -50,7 +50,10 @@ public class RecyclerView2Activity extends AppCompatActivity {
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_recycler_view2, menu); return true;
+        getMenuInflater().inflate(R.menu.menu_recycler_view2, menu);
+        MenuItem menuItem = menu.findItem(R.id.action_remove);
+        menuItem.setVisible(recyclerView2Adapter.checkedCount > 0);
+        return true;
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

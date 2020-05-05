@@ -18,13 +18,13 @@ public class RecyclerView2Adapter extends RecyclerView.Adapter<RecyclerView2Adap
             textView1 = view.findViewById(R.id.textView1);
             textView2 = view.findViewById(R.id.textView2);
         } public void setData() {
-            Memo memo = arrayList.get(getAdapterPosition());
+            memo memo = arrayList.get(getAdapterPosition());
             textView1.setText(memo.getTitle());
             textView2.setText(memo.getDateFormatted());
         }
     } LayoutInflater layoutInflater;
-    ArrayList<Memo> arrayList;
-    public RecyclerView2Adapter(Context context, ArrayList<Memo> arrayList) {
+    ArrayList<memo> arrayList;
+    public RecyclerView2Adapter(Context context, ArrayList<memo> arrayList) {
         this.layoutInflater = LayoutInflater.from(context); this.arrayList = arrayList;
     } @Override
     public int getItemCount() {

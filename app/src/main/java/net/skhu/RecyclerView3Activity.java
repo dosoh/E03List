@@ -18,6 +18,11 @@ import java.util.Date;
 import java.util.ListIterator;
 
 public class RecyclerView3Activity extends AppCompatActivity {
+
+    public static final int REQUEST_CREATE = 0;
+    public static final int REQUEST_EDIT = 1;
+    int memoIndex;
+
     RecyclerView3Adapter recyclerView3Adapter;
     ArrayList<Memo> arrayList;
     @Override
@@ -46,7 +51,7 @@ public class RecyclerView3Activity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.action_create) {
             Intent intent = new Intent(this, MemoActivity.class);
-            startActivityForResult(intent, 0);
+            startActivityForResult(intent, REQUEST_CREATE);
             return true;
         } else if (id == R.id.action_remove) {
             deleteItems(); return true;
@@ -58,6 +63,10 @@ public class RecyclerView3Activity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, intent);
         if (resultCode == RESULT_OK) {
             Memo memo = (Memo)intent.getSerializableExtra("MEMO");
+            if (requestCode == REQUEST_CREATE)
+                arrayList.add(memo);
+            else if (requestCode == REQUEST_EDIT)
+                arrayList.set(memoIndex, memo);
             arrayList.add(memo);
             recyclerView3Adapter.notifyDataSetChanged();
         }
